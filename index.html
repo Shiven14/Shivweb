@@ -4,482 +4,854 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shiv Parekh — Biology & Life Sciences</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,700;1,300;1,400&family=DM+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Anton&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --navy:#0a1e3c;--accent:#1a5fa8;--accent2:#2478c5;
   --white:#ffffff;--off:#f8f8f6;--light:#f0f4f8;
   --text:#0d1b2a;--muted:#607080;--border:#e2e8ee;--border2:#c8d4e0;
+  --gold:#c9a84c;--rust:#c0392b;--cream:#fdf6e3;
 }
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
 
-/* PRELOADER */
+/* ============================================
+   PRELOADER — Kinetic Typography
+   ============================================ */
 #preloader{
-  position:fixed;inset:0;z-index:9999;
-  background:var(--navy);
+  position:fixed;inset:0;z-index:9999;background:#000;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  transition:opacity 0.7s ease,visibility 0.7s ease;
+  overflow:hidden;transition:opacity 0.8s ease,visibility 0.8s ease;
 }
 #preloader.done{opacity:0;visibility:hidden;}
-.pl-cross{
-  width:72px;height:72px;position:relative;margin-bottom:28px;
-  animation:plPulse 1.5s ease-in-out infinite;
+.kinetic-wrap{position:relative;text-align:center;}
+.kinetic-line{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(40px,8vw,80px);
+  letter-spacing:-2px;color:#fff;
+  display:block;overflow:hidden;
+  animation:kSlide 0.6s cubic-bezier(0.77,0,0.18,1) forwards;
+  opacity:0;
 }
-@keyframes plPulse{0%,100%{opacity:0.4;transform:scale(0.95);}50%{opacity:1;transform:scale(1);}}
-.pl-h{position:absolute;top:50%;left:0;right:0;height:2px;background:var(--accent2);transform:translateY(-50%);}
-.pl-v{position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--accent2);transform:translateX(-50%);}
-.pl-c{position:absolute;width:16px;height:16px;border-color:rgba(255,255,255,0.35);border-style:solid;}
-.pl-c.tl{top:0;left:0;border-width:2px 0 0 2px;}
-.pl-c.tr{top:0;right:0;border-width:2px 2px 0 0;}
-.pl-c.bl{bottom:0;left:0;border-width:0 0 2px 2px;}
-.pl-c.br{bottom:0;right:0;border-width:0 2px 2px 0;}
-.pl-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:20px;font-weight:300;letter-spacing:6px;
-  text-transform:uppercase;color:rgba(255,255,255,0.45);
-  animation:plFade 1.5s ease-in-out infinite;
-}
-@keyframes plFade{0%,100%{opacity:0.3;}50%{opacity:0.8;}}
-.pl-bar{width:120px;height:1px;background:rgba(255,255,255,0.08);margin-top:20px;overflow:hidden;}
-.pl-bar-inner{height:100%;width:0;background:var(--accent2);animation:plBar 1.8s ease forwards;}
-@keyframes plBar{0%{width:0;}100%{width:100%;}}
+.kinetic-line:nth-child(1){animation-delay:0.1s;}
+.kinetic-line:nth-child(2){animation-delay:0.25s;color:var(--accent2);}
+.kinetic-line:nth-child(3){animation-delay:0.4s;font-size:clamp(14px,2vw,18px);font-family:'Space Mono',monospace;letter-spacing:4px;color:rgba(255,255,255,0.4);}
+@keyframes kSlide{from{opacity:0;transform:translateY(60px);}to{opacity:1;transform:translateY(0);}}
+.kinetic-bar{width:0;height:2px;background:var(--accent2);margin-top:24px;animation:kBar 1.6s ease forwards 0.5s;}
+@keyframes kBar{to{width:200px;}}
 
-/* NAV */
+/* ============================================
+   NAV — Swiss / International Typographic
+   ============================================ */
 #nav{
   position:fixed;top:0;left:0;right:0;z-index:998;
-  background:var(--white);border-bottom:1px solid var(--border);
+  background:var(--white);border-bottom:3px solid #000;
   display:flex;justify-content:space-between;align-items:center;
-  padding:0 3rem;height:64px;
+  padding:0 3rem;height:60px;
 }
-.nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none;}
-.nav-logo:hover .logo-name{color:var(--accent);}
-.cross-mark{width:30px;height:30px;position:relative;flex-shrink:0;}
-.cross-h{position:absolute;top:50%;left:0;right:0;height:1.5px;background:var(--accent);transform:translateY(-50%);}
-.cross-v{position:absolute;left:50%;top:0;bottom:0;width:1.5px;background:var(--accent);transform:translateX(-50%);}
-.cross-c{position:absolute;width:7px;height:7px;border-color:var(--navy);border-style:solid;}
-.cross-c.tl{top:0;left:0;border-width:1.5px 0 0 1.5px;}
-.cross-c.tr{top:0;right:0;border-width:1.5px 1.5px 0 0;}
-.cross-c.bl{bottom:0;left:0;border-width:0 0 1.5px 1.5px;}
-.cross-c.br{bottom:0;right:0;border-width:0 1.5px 1.5px 0;}
-.logo-name{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:400;color:var(--navy);line-height:1;transition:color 0.2s;}
-.logo-name em{font-style:italic;color:var(--accent);}
-.logo-sub{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:2px;}
-.nav-links{display:flex;gap:2rem;list-style:none;align-items:center;}
-.nav-links a{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;transition:color 0.2s;}
-.nav-links a:hover{color:var(--accent);}
-.nav-cta{background:var(--accent)!important;color:#fff!important;padding:7px 18px!important;font-size:10px!important;letter-spacing:2px!important;text-transform:uppercase!important;cursor:pointer!important;transition:background 0.2s!important;border:none!important;}
-.nav-cta:hover{background:var(--navy)!important;}
-
-/* HAMBURGER */
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
-.hamburger span{display:block;width:22px;height:1.5px;background:var(--navy);transition:all 0.3s;}
-.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);}
+.nav-logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;}
+.swiss-mark{
+  width:28px;height:28px;position:relative;flex-shrink:0;
+  background:#000;display:flex;align-items:center;justify-content:center;
+}
+.swiss-mark::before{content:'';position:absolute;width:14px;height:2px;background:#fff;}
+.swiss-mark::after{content:'';position:absolute;width:2px;height:14px;background:#fff;}
+.swiss-name{font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;color:#000;letter-spacing:2px;text-transform:uppercase;line-height:1;}
+.swiss-sub{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#666;margin-top:1px;}
+.nav-links{display:flex;gap:0;list-style:none;align-items:center;border-left:1px solid #000;}
+.nav-links li{border-right:1px solid #000;}
+.nav-links a{display:block;padding:0 1.2rem;font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:#000;text-decoration:none;cursor:pointer;transition:background 0.15s,color 0.15s;font-weight:500;line-height:59px;}
+.nav-links a:hover{background:#000;color:#fff;}
+.nav-cta{background:#000!important;color:#fff!important;}
+.nav-cta:hover{background:var(--accent)!important;}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{display:block;width:20px;height:2px;background:#000;transition:all 0.3s;}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
 .hamburger.open span:nth-child(2){opacity:0;}
-.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+.mobile-menu{position:fixed;top:60px;left:0;right:0;z-index:997;background:var(--white);border-bottom:2px solid #000;max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.mobile-menu.open{max-height:400px;}
+.mobile-menu a{display:block;padding:0.9rem 2rem;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#000;text-decoration:none;cursor:pointer;border-bottom:1px solid #000;transition:background 0.15s;}
+.mobile-menu a:hover{background:#000;color:#fff;}
 
-/* MOBILE MENU */
-.mobile-menu{
-  position:fixed;top:64px;left:0;right:0;z-index:997;
-  background:var(--white);border-bottom:1px solid var(--border);
-  max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;
-}
-.mobile-menu.open{max-height:400px;padding:0.5rem 0;}
-.mobile-menu a{display:block;padding:0.9rem 2rem;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;cursor:pointer;border-bottom:1px solid var(--border);transition:color 0.2s,background 0.2s;}
-.mobile-menu a:hover{color:var(--accent);background:var(--off);}
-.mobile-menu a:last-child{border-bottom:none;color:var(--accent);font-weight:500;}
-
-/* HERO */
+/* ============================================
+   HERO — Editorial + Split-Screen
+   ============================================ */
 #hero{
-  padding-top:64px;background:var(--white);
-  display:grid;grid-template-columns:1fr 1px 1fr;
-  min-height:90vh;border-bottom:1px solid var(--border);
+  padding-top:60px;
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:95vh;
+  border-bottom:3px solid #000;
 }
-.hero-left{display:flex;flex-direction:column;justify-content:center;padding:5rem 3.5rem;background:var(--off);}
-.hero-divider{background:var(--border);}
-.hero-right{display:flex;flex-direction:column;justify-content:center;padding:5rem 3.5rem;background:var(--white);}
-.hero-tag{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-weight:500;display:flex;align-items:center;gap:0.75rem;}
-.hero-tag::after{content:'';flex:0 0 20px;height:1px;background:var(--accent);opacity:0.5;}
-.hero-name{font-family:'Cormorant Garamond',serif;font-size:clamp(48px,7vw,78px);font-weight:300;line-height:1;letter-spacing:-1px;color:var(--navy);margin-bottom:0.5rem;}
-.hero-name em{font-style:italic;color:var(--accent);}
-.hero-degree{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);border-top:1px solid var(--border);padding-top:1.2rem;margin-top:1.5rem;margin-bottom:2.5rem;}
-.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2.5rem;}
-.stat{padding:1rem;border:1px solid var(--border);background:var(--white);}
-.stat-num{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--navy);line-height:1;margin-bottom:4px;}
-.stat-label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
-.hero-btns{display:flex;gap:0.75rem;flex-wrap:wrap;}
-.btn-primary{background:var(--accent);color:#fff;border:none;padding:11px 24px;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:background 0.2s,transform 0.2s;}
-.btn-primary:hover{background:var(--navy);transform:translateY(-1px);}
-.btn-outline{background:transparent;color:var(--accent);border:1px solid var(--accent);padding:11px 24px;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
-.btn-outline:hover{background:var(--accent);color:#fff;}
-.info-panel{display:flex;flex-direction:column;}
-.info-block{padding:1.25rem 0;border-bottom:1px solid var(--border);}
-.info-block:first-child{padding-top:0;}
-.info-block:last-child{border-bottom:none;}
-.ib-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.4rem;font-weight:500;}
-.ib-val{font-size:13px;color:var(--text);font-weight:300;line-height:1.6;}
-.ib-val strong{font-weight:500;color:var(--navy);}
-.hero-quote{margin-top:1.5rem;padding:1.25rem;border-left:2px solid var(--accent);background:var(--light);}
-.hero-quote p{font-family:'Cormorant Garamond',serif;font-size:17px;font-style:italic;font-weight:300;color:var(--navy);line-height:1.6;}
+.hero-left{
+  background:#000;color:#fff;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:4rem;position:relative;overflow:hidden;
+}
+.hero-left::before{
+  content:'SP';position:absolute;top:-20px;right:-20px;
+  font-family:'Anton',sans-serif;font-size:280px;color:rgba(255,255,255,0.03);
+  line-height:1;pointer-events:none;
+}
+.hero-issue{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;color:rgba(255,255,255,0.4);margin-bottom:3rem;text-transform:uppercase;}
+.hero-vol{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.25);margin-bottom:0.5rem;text-transform:uppercase;font-family:'Space Mono',monospace;}
+.hero-headline{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(56px,8vw,96px);
+  line-height:0.9;letter-spacing:-2px;
+  color:#fff;margin-bottom:1rem;
+  text-transform:uppercase;
+}
+.hero-headline em{color:var(--accent2);font-style:normal;}
+.hero-kicker{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,0.15);}
+.hero-right{
+  background:var(--cream);
+  display:flex;flex-direction:column;justify-content:center;
+  padding:4rem;border-left:3px solid #000;
+}
+.hero-right-label{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
+.hero-right-val{font-size:14px;color:var(--text);font-weight:300;line-height:1.6;margin-bottom:1.5rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
+.hero-right-val:last-of-type{border-bottom:none;}
+.hero-right-val strong{font-weight:600;color:#000;}
+.hero-btns{display:flex;gap:0;margin-top:2rem;border:2px solid #000;}
+.hero-btn{flex:1;padding:12px;font-size:9px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:700;border:none;transition:background 0.2s,color 0.2s;}
+.hero-btn.dark{background:#000;color:#fff;}
+.hero-btn.dark:hover{background:var(--accent);}
+.hero-btn.light{background:transparent;color:#000;}
+.hero-btn.light:hover{background:#000;color:#fff;}
+.hero-btn-div{width:2px;background:#000;flex-shrink:0;}
 
-/* SECTIONS */
-.section-wrap{max-width:1100px;margin:0 auto;padding:5rem 2rem;}
+/* SECTIONS BASE */
+.section-wrap{max-width:1200px;margin:0 auto;padding:5rem 2rem;}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.6s ease,transform 0.6s ease;}
 .reveal.vis{opacity:1;transform:translateY(0);}
-.sec-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border);}
-.sec-eyebrow{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:500;}
-.sec-h{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,44px);font-weight:300;color:var(--navy);line-height:1.05;}
-.sec-h em{font-style:italic;}
-.sec-count{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:300;color:var(--border2);line-height:1;}
 
-/* ABOUT */
-#about{background:var(--white);border-bottom:1px solid var(--border);}
-.about-grid{display:grid;grid-template-columns:300px 1fr;gap:3.5rem;align-items:start;}
-.about-card{background:var(--navy);padding:2rem;position:relative;}
-.about-card::after{content:'';position:absolute;top:7px;left:7px;right:-7px;bottom:-7px;border:1px solid var(--border2);z-index:-1;}
-.ac-initials{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:300;color:rgba(255,255,255,0.07);line-height:1;margin-bottom:1.5rem;}
-.ac-row{margin-bottom:1rem;}
-.ac-label{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:0.2rem;}
-.ac-val{font-size:12px;color:rgba(255,255,255,0.8);font-weight:300;line-height:1.5;}
-.ac-divider{height:1px;background:rgba(255,255,255,0.08);margin:1.2rem 0;}
-.about-text p{font-size:14px;line-height:1.9;color:var(--muted);font-weight:300;margin-bottom:1.2rem;}
-.about-text p strong{color:var(--text);font-weight:500;}
-.about-text p:last-child{margin-bottom:0;}
-.competencies{margin-top:2rem;}
-.comp-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;font-weight:500;}
-.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
-.comp-item{padding:0.65rem 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted);}
-.comp-item::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--accent);flex-shrink:0;}
-.comp-item:nth-last-child(-n+2){border-bottom:none;}
+/* ============================================
+   ABOUT — Bento Grid
+   ============================================ */
+#about{background:#f5f5f5;border-bottom:3px solid #000;}
+.bento-eyebrow{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.bento-h{font-family:'Anton',sans-serif;font-size:clamp(36px,4vw,52px);text-transform:uppercase;letter-spacing:-1px;color:#000;margin-bottom:2.5rem;}
+.bento-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:auto;
+  gap:12px;
+}
+.bento-card{border-radius:16px;padding:1.75rem;position:relative;overflow:hidden;}
+.b1{grid-column:1/3;grid-row:1/2;background:#000;color:#fff;}
+.b2{grid-column:3/4;background:var(--accent);color:#fff;}
+.b3{grid-column:4/5;background:var(--cream);border:2px solid #000;}
+.b4{grid-column:1/2;background:#fff;border:2px solid #000;}
+.b5{grid-column:2/4;background:var(--accent2);color:#fff;}
+.b6{grid-column:4/5;background:#000;color:#fff;}
+.b7{grid-column:1/3;background:var(--cream);border:2px solid #000;}
+.b8{grid-column:3/5;background:#f0f4f8;border:2px solid #000;}
+.bento-label{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;opacity:0.5;margin-bottom:0.5rem;}
+.bento-val{font-size:13px;line-height:1.6;font-weight:300;}
+.bento-big{font-family:'Anton',sans-serif;font-size:52px;line-height:1;}
+.bento-card h3{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;margin-bottom:0.5rem;}
+.bento-card p{font-size:13px;line-height:1.7;opacity:0.8;font-weight:300;}
+.bento-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:1rem;}
+.bento-tag{font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;border:1px solid currentColor;opacity:0.7;}
 
-/* EXPERIENCE */
-#experience{background:var(--off);border-bottom:1px solid var(--border);}
-.exp-item{display:grid;grid-template-columns:180px 1fr;padding:2rem 0;border-bottom:1px solid var(--border);opacity:0;transform:translateY(16px);transition:opacity 0.5s,transform 0.5s;}
-.exp-item.vis{opacity:1;transform:translateY(0);}
-.exp-item:last-child{border-bottom:none;}
-.exp-item:hover .exp-role-name{color:var(--accent);}
-.exp-meta{padding-right:2.5rem;padding-top:2px;}
-.exp-period{font-size:10px;letter-spacing:1.5px;color:var(--accent);font-weight:500;text-transform:uppercase;margin-bottom:0.25rem;}
-.exp-location{font-size:11px;color:var(--muted);font-weight:300;}
-.exp-type{display:inline-block;margin-top:0.6rem;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 7px;border:1px solid var(--border2);color:var(--muted);}
-.exp-role-name{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:400;color:var(--navy);margin-bottom:3px;transition:color 0.2s;line-height:1.2;}
-.exp-org-name{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;font-weight:500;}
-.exp-description{font-size:13px;line-height:1.8;color:var(--muted);font-weight:300;}
-.exp-pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:0.75rem;}
-.exp-pill{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;background:rgba(26,95,168,0.07);color:var(--accent);padding:2px 8px;}
+/* ============================================
+   EXPERIENCE — Brutalism / Neo-Brutalism
+   ============================================ */
+#experience{background:#fff;border-bottom:4px solid #000;}
+.brut-header{margin-bottom:2rem;}
+.brut-eyebrow{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:#000;margin-bottom:0.5rem;display:flex;align-items:center;gap:1rem;}
+.brut-eyebrow::after{content:'';flex:1;height:2px;background:#000;}
+.brut-h{font-family:'Anton',sans-serif;font-size:clamp(48px,6vw,80px);text-transform:uppercase;letter-spacing:-2px;color:#000;line-height:0.9;}
+.brut-item{
+  border:2px solid #000;margin-bottom:12px;
+  display:grid;grid-template-columns:160px 1fr auto;
+  position:relative;
+  transition:transform 0.15s,box-shadow 0.15s;
+  background:#fff;
+}
+.brut-item:hover{transform:translate(-3px,-3px);box-shadow:5px 5px 0 #000;}
+.brut-left{padding:1.5rem;border-right:2px solid #000;background:#f5f5f5;}
+.brut-period{font-family:'Space Mono',monospace;font-size:10px;color:#000;font-weight:700;margin-bottom:4px;}
+.brut-loc{font-size:11px;color:#666;}
+.brut-badge{display:inline-block;margin-top:0.75rem;font-size:8px;letter-spacing:2px;text-transform:uppercase;padding:3px 8px;background:#000;color:#fff;}
+.brut-body{padding:1.5rem;}
+.brut-role{font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;color:#000;margin-bottom:2px;text-transform:uppercase;letter-spacing:-0.5px;}
+.brut-org{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:1.5px;color:var(--accent);margin-bottom:0.75rem;}
+.brut-desc{font-size:12px;line-height:1.7;color:#333;}
+.brut-pills{display:flex;flex-wrap:wrap;gap:4px;margin-top:0.75rem;}
+.brut-pill{font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:2px 8px;border:1.5px solid #000;color:#000;}
+.brut-num{padding:1.5rem;font-family:'Anton',sans-serif;font-size:40px;color:rgba(0,0,0,0.06);align-self:flex-end;line-height:1;}
 
-/* EDUCATION */
-#education{background:var(--white);border-bottom:1px solid var(--border);}
-.edu-list{display:flex;flex-direction:column;gap:1px;background:var(--border);}
-.edu-item{display:grid;grid-template-columns:1fr 1fr 1fr;background:var(--white);transition:background 0.2s;cursor:pointer;}
-.edu-item:hover{background:var(--off);}
-.edu-col{padding:1.75rem;border-right:1px solid var(--border);}
-.edu-col:last-child{border-right:none;}
-.edu-col-label{font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:0.4rem;}
-.edu-col-val{font-size:13px;color:var(--navy);line-height:1.4;}
-.edu-col-val em{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;}
-.edu-badge{display:inline-block;background:var(--light);border:1px solid var(--border);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:2px 7px;margin-top:0.5rem;}
+/* ============================================
+   LEADERSHIP — Card-Based
+   ============================================ */
+#leadership{background:var(--light);border-bottom:3px solid #000;}
+.card-eyebrow{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:0.5rem;font-weight:500;font-family:'Space Mono',monospace;}
+.card-h{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:300;color:var(--navy);margin-bottom:2.5rem;line-height:1.1;}
+.card-h em{font-style:italic;}
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.lcard{
+  background:var(--white);border-radius:12px;
+  padding:2rem;border:1px solid var(--border);
+  transition:transform 0.25s,box-shadow 0.25s;
+  position:relative;overflow:hidden;
+}
+.lcard:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(10,30,60,0.12);}
+.lcard::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+.lcard:nth-child(1)::before{background:var(--accent);}
+.lcard:nth-child(2)::before{background:var(--gold);}
+.lcard:nth-child(3)::before{background:#2ecc71;}
+.lcard-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;font-size:20px;}
+.lcard:nth-child(1) .lcard-icon{background:rgba(26,95,168,0.1);}
+.lcard:nth-child(2) .lcard-icon{background:rgba(201,168,76,0.1);}
+.lcard:nth-child(3) .lcard-icon{background:rgba(46,204,113,0.1);}
+.lcard-period{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:0.5rem;}
+.lcard-role{font-family:'DM Sans',sans-serif;font-size:17px;font-weight:600;color:var(--navy);margin-bottom:4px;}
+.lcard-org{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-weight:500;}
+.lcard-desc{font-size:12px;line-height:1.7;color:var(--muted);}
+.lcard-pills{display:flex;flex-wrap:wrap;gap:5px;margin-top:1rem;}
+.lcard-pill{font-size:8px;letter-spacing:1px;text-transform:uppercase;background:var(--light);color:var(--muted);padding:3px 8px;border-radius:20px;}
 
-/* CONTACT */
-#contact{background:var(--off);border-bottom:1px solid var(--border);}
-.contact-layout{display:grid;grid-template-columns:1fr 1px 1fr;gap:0;}
-.contact-divider{background:var(--border);}
-.contact-left{padding-right:3.5rem;}
-.contact-right{padding-left:3.5rem;}
-.contact-intro{font-size:14px;line-height:1.9;color:var(--muted);font-weight:300;margin-bottom:2rem;}
-.contact-item{display:flex;align-items:center;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--border);cursor:pointer;text-decoration:none;color:var(--text);transition:color 0.2s;}
-.contact-item:first-of-type{border-top:1px solid var(--border);}
-.contact-item:hover{color:var(--accent);}
-.contact-item:hover .ci-arrow{transform:translateX(4px);}
-.ci-icon{width:36px;height:36px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color 0.2s,background 0.2s;}
-.contact-item:hover .ci-icon{border-color:var(--accent);background:rgba(26,95,168,0.05);}
-.ci-icon svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.5;}
-.ci-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:1px;}
-.ci-val{font-size:12px;}
-.ci-arrow{font-size:14px;margin-left:auto;transition:transform 0.2s;color:var(--muted);}
-.form-wrap{display:flex;flex-direction:column;gap:1rem;}
-.fg{display:flex;flex-direction:column;gap:5px;}
-.fg label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:500;}
-.fg input,.fg textarea{background:var(--white);border:1px solid var(--border);padding:9px 13px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--text);outline:none;transition:border-color 0.2s;resize:none;}
-.fg input:focus,.fg textarea:focus{border-color:var(--accent);}
-.fg textarea{height:85px;}
-.btn-send{background:var(--navy);color:#fff;border:none;padding:11px 24px;font-size:10px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;font-family:'DM Sans',sans-serif;align-self:flex-start;transition:background 0.2s;display:flex;align-items:center;gap:8px;}
-.btn-send:hover{background:var(--accent);}
-.btn-send svg{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:1.5;transition:transform 0.2s;}
-.btn-send:hover svg{transform:translateX(3px);}
-.form-ok{display:none;padding:1.5rem;background:rgba(26,95,168,0.05);border:1px solid rgba(26,95,168,0.15);text-align:center;}
-.form-ok p{font-size:13px;color:var(--muted);}
-.ok-icon{font-size:22px;color:var(--accent);margin-bottom:0.5rem;}
+/* ============================================
+   CERTIFICATES — Art Deco
+   ============================================ */
+#certificates{background:#0a0a0a;border-bottom:none;position:relative;overflow:hidden;}
+#certificates::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(201,168,76,0.08) 40px),
+    repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(201,168,76,0.08) 40px);
+}
+.deco-header{text-align:center;margin-bottom:3rem;position:relative;}
+.deco-rule{display:flex;align-items:center;gap:1rem;justify-content:center;margin-bottom:1rem;}
+.deco-rule::before,.deco-rule::after{content:'';flex:1;max-width:80px;height:1px;background:var(--gold);}
+.deco-diamond{width:8px;height:8px;background:var(--gold);transform:rotate(45deg);}
+.deco-eyebrow{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:0.7;}
+.deco-h{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,4vw,52px);font-weight:300;
+  color:var(--gold);line-height:1.1;margin-bottom:0.5rem;
+}
+.deco-h em{font-style:italic;}
+.deco-sub{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.4);}
+.deco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;position:relative;}
+.deco-card{
+  background:rgba(201,168,76,0.04);
+  border:1px solid rgba(201,168,76,0.2);
+  padding:2rem;text-align:center;
+  transition:background 0.3s,border-color 0.3s;
+  position:relative;
+}
+.deco-card:hover{background:rgba(201,168,76,0.08);border-color:rgba(201,168,76,0.5);}
+.deco-card::before,.deco-card::after{
+  content:'◆';position:absolute;font-size:8px;color:var(--gold);opacity:0.3;
+}
+.deco-card::before{top:8px;left:8px;}
+.deco-card::after{bottom:8px;right:8px;}
+.deco-cert-name{font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:400;color:var(--gold);margin-bottom:0.5rem;line-height:1.3;}
+.deco-cert-org{font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:rgba(201,168,76,0.5);margin-bottom:0.5rem;}
+.deco-cert-date{font-size:11px;color:rgba(255,255,255,0.25);}
+.deco-full{grid-column:1/2;}
 
-/* FOOTER */
-footer{background:var(--navy);padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
-.footer-logo{display:flex;align-items:center;gap:10px;}
-.f-cross{width:22px;height:22px;position:relative;}
-.f-cross .fh{position:absolute;top:50%;left:0;right:0;height:1px;background:rgba(255,255,255,0.2);transform:translateY(-50%);}
-.f-cross .fv{position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.2);transform:translateX(-50%);}
-.f-cross .fc{position:absolute;width:5px;height:5px;border-color:rgba(255,255,255,0.12);border-style:solid;}
-.f-cross .fc.tl{top:0;left:0;border-width:1px 0 0 1px;}
-.f-cross .fc.tr{top:0;right:0;border-width:1px 1px 0 0;}
-.f-cross .fc.bl{bottom:0;left:0;border-width:0 0 1px 1px;}
-.f-cross .fc.br{bottom:0;right:0;border-width:0 1px 1px 0;}
-.f-name{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:300;letter-spacing:2px;color:rgba(255,255,255,0.25);}
-.f-copy{font-size:10px;color:rgba(255,255,255,0.18);letter-spacing:1px;}
-.f-links{display:flex;gap:1.5rem;}
-.f-links a{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.22);text-decoration:none;transition:color 0.2s;cursor:pointer;}
-.f-links a:hover{color:rgba(255,255,255,0.6);}
+/* ============================================
+   SKILLS — Material Design / Flat
+   ============================================ */
+#skills{background:#fafafa;border-bottom:1px solid #e0e0e0;}
+.mat-eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:0.25rem;font-weight:500;}
+.mat-h{font-family:'DM Sans',sans-serif;font-size:clamp(28px,3vw,40px);font-weight:700;color:#212121;margin-bottom:2.5rem;letter-spacing:-0.5px;}
+.mat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+.mat-card{background:#fff;border-radius:4px;padding:1.75rem;box-shadow:0 1px 3px rgba(0,0,0,0.12),0 1px 2px rgba(0,0,0,0.08);transition:box-shadow 0.2s;}
+.mat-card:hover{box-shadow:0 4px 8px rgba(0,0,0,0.15),0 2px 4px rgba(0,0,0,0.1);}
+.mat-card-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.25rem;padding-bottom:0.75rem;border-bottom:2px solid var(--accent);}
+.mat-icon{width:36px;height:36px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.mat-icon svg{width:18px;height:18px;fill:#fff;}
+.mat-card-title{font-size:13px;font-weight:600;color:#212121;letter-spacing:0.5px;text-transform:uppercase;}
+.mat-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.mat-chip{font-size:11px;background:#e3f2fd;color:#1565c0;padding:4px 12px;border-radius:16px;font-weight:500;}
+.mat-chip.green{background:#e8f5e9;color:#2e7d32;}
+.mat-chip.purple{background:#f3e5f5;color:#6a1b9a;}
+.mat-chip.orange{background:#fff3e0;color:#e65100;}
+
+/* ============================================
+   EDUCATION — Luxury / Refined
+   ============================================ */
+#education{background:var(--cream);border-top:1px solid rgba(201,168,76,0.3);border-bottom:1px solid rgba(201,168,76,0.3);}
+.lux-eyebrow{font-family:'Cormorant Garamond',serif;font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:0.75rem;font-style:italic;}
+.lux-h{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,58px);font-weight:300;color:var(--navy);line-height:1.05;margin-bottom:3rem;}
+.lux-h em{font-style:italic;color:var(--gold);}
+.lux-list{display:flex;flex-direction:column;gap:0;}
+.lux-item{
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  border:1px solid rgba(201,168,76,0.25);
+  margin-bottom:1px;cursor:pointer;
+  transition:background 0.2s,border-color 0.2s;
+  background:rgba(255,255,255,0.6);
+}
+.lux-item:hover{background:rgba(255,255,255,0.95);border-color:rgba(201,168,76,0.6);}
+.lux-col{padding:2rem;border-right:1px solid rgba(201,168,76,0.2);}
+.lux-col:last-child{border-right:none;}
+.lux-col-label{font-family:'Cormorant Garamond',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:0.5rem;font-style:italic;}
+.lux-col-val{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--navy);line-height:1.3;}
+.lux-badge{display:inline-block;font-size:8px;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold);padding:2px 8px;margin-top:0.5rem;}
+.lux-courses{margin-top:2.5rem;padding:2rem;border:1px solid rgba(201,168,76,0.25);background:rgba(255,255,255,0.4);}
+.lux-courses-title{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;font-style:italic;}
+.lux-courses-grid{display:flex;flex-wrap:wrap;gap:8px;}
+.lux-course{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--navy);padding:5px 14px;border:1px solid rgba(201,168,76,0.3);background:rgba(255,255,255,0.5);}
+
+/* ============================================
+   CONTACT — Glassmorphism
+   ============================================ */
+#contact{
+  background:linear-gradient(135deg,#0a1e3c 0%,#1a3a6c 40%,#0d2a4a 100%);
+  position:relative;overflow:hidden;
+}
+#contact::before{
+  content:'';position:absolute;
+  width:600px;height:600px;border-radius:50%;
+  background:radial-gradient(circle,rgba(36,120,197,0.3) 0%,transparent 70%);
+  top:-200px;right:-200px;
+}
+#contact::after{
+  content:'';position:absolute;
+  width:400px;height:400px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,0.15) 0%,transparent 70%);
+  bottom:-100px;left:-100px;
+}
+.glass-eyebrow{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:0.5rem;}
+.glass-h{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,52px);font-weight:300;color:#fff;margin-bottom:2.5rem;line-height:1.1;}
+.glass-h em{font-style:italic;color:rgba(180,215,250,0.8);}
+.glass-layout{display:grid;grid-template-columns:1fr 1fr;gap:2rem;position:relative;z-index:1;}
+.glass-card{
+  background:rgba(255,255,255,0.08);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:16px;padding:2rem;
+}
+.glass-intro{font-size:14px;line-height:1.9;color:rgba(255,255,255,0.65);font-weight:300;margin-bottom:2rem;}
+.glass-link{
+  display:flex;align-items:center;gap:1rem;
+  padding:1rem;margin-bottom:8px;
+  border-radius:10px;border:1px solid rgba(255,255,255,0.1);
+  text-decoration:none;color:#fff;
+  transition:background 0.2s,border-color 0.2s;cursor:pointer;
+}
+.glass-link:hover{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.25);}
+.glass-link-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.glass-link-icon svg{width:16px;height:16px;fill:none;stroke:#fff;stroke-width:1.5;}
+.glass-link-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:1px;}
+.glass-link-val{font-size:12px;color:rgba(255,255,255,0.8);}
+.glass-arrow{margin-left:auto;color:rgba(255,255,255,0.3);transition:transform 0.2s;}
+.glass-link:hover .glass-arrow{transform:translateX(3px);}
+.glass-form{display:flex;flex-direction:column;gap:0.75rem;}
+.glass-fg{display:flex;flex-direction:column;gap:4px;}
+.glass-fg label{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.4);}
+.glass-fg input,.glass-fg textarea{
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:8px;padding:9px 13px;
+  font-size:13px;font-family:'DM Sans',sans-serif;
+  color:#fff;outline:none;
+  transition:border-color 0.2s,background 0.2s;resize:none;
+}
+.glass-fg input::placeholder,.glass-fg textarea::placeholder{color:rgba(255,255,255,0.25);}
+.glass-fg input:focus,.glass-fg textarea:focus{border-color:rgba(255,255,255,0.4);background:rgba(255,255,255,0.12);}
+.glass-fg textarea{height:80px;}
+.glass-btn{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.3);
+  border-radius:8px;padding:10px 24px;
+  font-size:10px;letter-spacing:2px;text-transform:uppercase;
+  cursor:pointer;color:#fff;font-family:'DM Sans',sans-serif;
+  align-self:flex-start;transition:background 0.2s;
+  display:flex;align-items:center;gap:8px;
+}
+.glass-btn:hover{background:rgba(255,255,255,0.25);}
+.glass-btn svg{width:13px;height:13px;fill:none;stroke:#fff;stroke-width:1.5;transition:transform 0.2s;}
+.glass-btn:hover svg{transform:translateX(3px);}
+.form-ok-glass{display:none;text-align:center;padding:2rem;}
+.form-ok-glass p{font-size:13px;color:rgba(255,255,255,0.6);}
+.ok-icon-glass{font-size:28px;color:rgba(255,255,255,0.6);margin-bottom:0.5rem;}
+
+/* ============================================
+   FOOTER — Dark Academia
+   ============================================ */
+footer{
+  background:#1a1410;
+  border-top:3px double rgba(201,168,76,0.4);
+  padding:3rem;
+  position:relative;overflow:hidden;
+}
+footer::before{
+  content:'"The practice of medicine is an art, not a trade; a calling, not a business."';
+  position:absolute;bottom:1rem;left:50%;transform:translateX(-50%);
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:11px;color:rgba(255,255,255,0.08);
+  white-space:nowrap;letter-spacing:1px;
+}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;}
+.footer-logo{display:flex;align-items:center;gap:14px;}
+.da-mark{
+  width:36px;height:36px;border:1px solid rgba(201,168,76,0.4);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+}
+.da-mark::before,.da-mark::after{content:'';position:absolute;background:rgba(201,168,76,0.4);}
+.da-mark::before{width:18px;height:1px;}
+.da-mark::after{width:1px;height:18px;}
+.da-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;letter-spacing:3px;color:rgba(255,255,255,0.5);text-transform:uppercase;}
+.footer-center{text-align:center;}
+.footer-quote{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(201,168,76,0.4);margin-bottom:0.25rem;}
+.footer-copy{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,0.15);text-transform:uppercase;font-family:'Space Mono',monospace;}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-family:'Space Mono',monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);text-decoration:none;transition:color 0.2s;cursor:pointer;}
+.footer-links a:hover{color:rgba(201,168,76,0.6);}
 
 /* MODAL */
-#modal-bg{display:none;position:fixed;inset:0;z-index:2000;background:rgba(10,30,60,0.7);align-items:center;justify-content:center;backdrop-filter:blur(3px);padding:1rem;}
+#modal-bg{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;backdrop-filter:blur(4px);padding:1rem;}
 #modal-bg.open{display:flex;}
-.modal-box{background:var(--white);max-width:460px;width:100%;padding:2.5rem;position:relative;animation:mIn 0.3s ease;}
+.modal-box{background:var(--cream);max-width:460px;width:100%;padding:2.5rem;position:relative;border:2px solid var(--gold);animation:mIn 0.3s ease;}
 @keyframes mIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 .modal-x{position:absolute;top:1rem;right:1rem;background:none;border:none;cursor:pointer;font-size:18px;color:var(--muted);}
-.modal-x:hover{color:var(--text);}
-.modal-box h3{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:300;color:var(--navy);margin-bottom:0.5rem;}
+.modal-box h3{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--navy);margin-bottom:0.5rem;}
 .modal-box p{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:1.5rem;}
-.modal-a{display:block;padding:0.85rem 1.1rem;border:1px solid var(--border);text-decoration:none;color:var(--navy);font-size:13px;transition:border-color 0.2s,color 0.2s;}
-.modal-a:hover{border-color:var(--accent);color:var(--accent);}
+.modal-a{display:block;padding:0.85rem 1.1rem;border:1px solid var(--gold);text-decoration:none;color:var(--navy);font-size:13px;font-family:'Cormorant Garamond',serif;transition:background 0.2s;}
+.modal-a:hover{background:rgba(201,168,76,0.1);}
 
 /* MOBILE */
-@media(max-width:768px){
-  #nav{padding:0 1.25rem;}
+@media(max-width:900px){
+  #nav{padding:0 1rem;}
   .nav-links{display:none;}
   .hamburger{display:flex;}
-  #hero{grid-template-columns:1fr;min-height:auto;}
-  .hero-divider{display:none;}
-  .hero-left{padding:5rem 1.5rem 2.5rem;}
-  .hero-right{padding:2rem 1.5rem 4rem;border-top:1px solid var(--border);}
-  .hero-stats{grid-template-columns:1fr 1fr;gap:0.75rem;}
-  .section-wrap{padding:3.5rem 1.25rem;}
-  .sec-count{display:none;}
-  .sec-header{margin-bottom:2rem;}
-  .about-grid{grid-template-columns:1fr;gap:2rem;}
-  .about-card::after{display:none;}
-  .comp-grid{grid-template-columns:1fr;}
-  .comp-item:nth-last-child(-n+2){border-bottom:1px solid var(--border);}
-  .comp-item:last-child{border-bottom:none;}
-  .exp-item{grid-template-columns:1fr;gap:0.75rem;}
-  .exp-meta{padding-right:0;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
-  .edu-item{grid-template-columns:1fr;}
-  .edu-col{border-right:none;border-bottom:1px solid var(--border);padding:1.25rem;}
-  .edu-col:last-child{border-bottom:none;}
-  .contact-layout{grid-template-columns:1fr;}
-  .contact-divider{display:none;}
-  .contact-left{padding-right:0;margin-bottom:2.5rem;}
-  .contact-right{padding-left:0;}
-  footer{padding:1.5rem 1.25rem;flex-direction:column;align-items:flex-start;gap:1rem;}
-  .f-copy{order:3;width:100%;}
+  #hero{grid-template-columns:1fr;}
+  .hero-left{min-height:50vh;}
+  .hero-right{border-left:none;border-top:3px solid #000;}
+  .bento-grid{grid-template-columns:1fr 1fr;}
+  .b1,.b2,.b3,.b4,.b5,.b6,.b7,.b8{grid-column:auto;}
+  .brut-item{grid-template-columns:1fr;grid-template-rows:auto;}
+  .brut-left{border-right:none;border-bottom:2px solid #000;}
+  .brut-num{display:none;}
+  .cards-grid{grid-template-columns:1fr;}
+  .deco-grid{grid-template-columns:1fr;}
+  .mat-grid{grid-template-columns:1fr;}
+  .lux-item{grid-template-columns:1fr;}
+  .lux-col{border-right:none;border-bottom:1px solid rgba(201,168,76,0.2);}
+  .lux-col:last-child{border-bottom:none;}
+  .glass-layout{grid-template-columns:1fr;}
+  .section-wrap{padding:3rem 1.25rem;}
+  .footer-inner{flex-direction:column;align-items:flex-start;gap:1rem;}
 }
-
 @media(max-width:480px){
-  .hero-name{font-size:52px;}
+  .hero-headline{font-size:52px;}
   .hero-btns{flex-direction:column;}
-  .btn-primary,.btn-outline{width:100%;text-align:center;}
+  .bento-grid{grid-template-columns:1fr;}
+  .b1,.b2,.b3,.b4,.b5,.b6,.b7,.b8{grid-column:auto;}
 }
 </style>
 </head>
 <body>
 
-<!-- PRELOADER -->
+<!-- ── PRELOADER: Kinetic Typography ── -->
 <div id="preloader">
-  <div class="pl-cross">
-    <div class="pl-h"></div><div class="pl-v"></div>
-    <div class="pl-c tl"></div><div class="pl-c tr"></div>
-    <div class="pl-c bl"></div><div class="pl-c br"></div>
+  <div class="kinetic-wrap">
+    <span class="kinetic-line">SHIV</span>
+    <span class="kinetic-line">PAREKH</span>
+    <span class="kinetic-line">BIOLOGY · MEDICINE · 2027</span>
+    <div class="kinetic-bar"></div>
   </div>
-  <div class="pl-name">Shiv Parekh</div>
-  <div class="pl-bar"><div class="pl-bar-inner"></div></div>
 </div>
 
-<!-- NAV -->
+<!-- ── NAV: Swiss / International ── -->
 <nav id="nav">
   <a class="nav-logo" onclick="navTo('hero')">
-    <div class="cross-mark">
-      <div class="cross-h"></div><div class="cross-v"></div>
-      <div class="cross-c tl"></div><div class="cross-c tr"></div>
-      <div class="cross-c bl"></div><div class="cross-c br"></div>
-    </div>
-    <div>
-      <div class="logo-name">Shiv <em>Parekh</em></div>
-      <div class="logo-sub">Biology · Medicine</div>
-    </div>
+    <div class="swiss-mark"></div>
+    <div><div class="swiss-name">Shiv Parekh</div><div class="swiss-sub">Biology · Medicine</div></div>
   </a>
   <ul class="nav-links">
     <li><a onclick="navTo('about')">About</a></li>
     <li><a onclick="navTo('experience')">Experience</a></li>
+    <li><a onclick="navTo('leadership')">Leadership</a></li>
     <li><a onclick="navTo('education')">Education</a></li>
     <li><a onclick="navTo('contact')">Contact</a></li>
     <li><a class="nav-cta" onclick="openResume()">Resume ↗</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" onclick="toggleMenu()">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></button>
 </nav>
-
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobile-menu">
   <a onclick="mNavTo('about')">About</a>
   <a onclick="mNavTo('experience')">Experience</a>
+  <a onclick="mNavTo('leadership')">Leadership</a>
   <a onclick="mNavTo('education')">Education</a>
   <a onclick="mNavTo('contact')">Contact</a>
   <a onclick="openResume()">Resume ↗</a>
 </div>
 
-<!-- HERO -->
+<!-- ── HERO: Editorial + Split-Screen ── -->
 <div id="hero">
   <div class="hero-left">
-    <div class="hero-tag">Pre-Medical · Queen's University</div>
-    <h1 class="hero-name">Shiv<br><em>Parekh</em></h1>
-    <div class="hero-degree">BSc Candidate · Biology · Life Sciences · Class of 2027</div>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Clinical Roles</div></div>
-      <div class="stat"><div class="stat-num">3+</div><div class="stat-label">Years Exp.</div></div>
-      <div class="stat"><div class="stat-num">2</div><div class="stat-label">Institutions</div></div>
-      <div class="stat"><div class="stat-num">1</div><div class="stat-label">Co-Founded</div></div>
-    </div>
-    <div class="hero-btns">
-      <button class="btn-primary" onclick="navTo('experience')">View Experience</button>
-      <button class="btn-outline" onclick="navTo('contact')">Get In Touch</button>
-    </div>
+    <div class="hero-issue">Vol. 01 — 2026 Edition &nbsp;·&nbsp; Queen's University</div>
+    <div class="hero-vol">Pre-Medical Profile</div>
+    <h1 class="hero-headline">SHIV<br><em>PAREKH</em></h1>
+    <div class="hero-kicker">BSc Biology · Minor Life Sciences · Smith Business Certificate · Class of 2027</div>
   </div>
-  <div class="hero-divider"></div>
   <div class="hero-right">
-    <div class="info-panel">
-      <div class="info-block"><div class="ib-label">Current Position</div><div class="ib-val"><strong>Digital Communications Supervisor</strong><br>Alma Mater Society, Queen's University</div></div>
-      <div class="info-block"><div class="ib-label">Institution</div><div class="ib-val"><strong>Queen's University</strong> · Kingston, Ontario<br>Smith School of Business Certificate · 2026–2027</div></div>
-      <div class="info-block"><div class="ib-label">Clinical Background</div><div class="ib-val"><strong>Nephrology Observership &amp; Scribe</strong><br>Washington Nephrology Associates · Annapolis, MD</div></div>
-      <div class="info-block"><div class="ib-label">Research &amp; Outreach</div><div class="ib-val"><strong>iGEM QGEM</strong> · Human Practices &amp; Outreach<br>Synthetic biology education &amp; community engagement</div></div>
+    <div class="hero-right-label">Current Role</div>
+    <div class="hero-right-val"><strong>Co-President</strong> — Queen's Pre-Medical Society</div>
+    <div class="hero-right-label">Clinical Background</div>
+    <div class="hero-right-val"><strong>Patient Support &amp; Scribe Intern</strong><br>Washington Nephrology Association · Annapolis, MD</div>
+    <div class="hero-right-label">Contact</div>
+    <div class="hero-right-val"><strong>22shp3@queensu.ca</strong> · 249-779-2222</div>
+    <div class="hero-btns">
+      <button class="hero-btn dark" onclick="navTo('experience')">Experience</button>
+      <div class="hero-btn-div"></div>
+      <button class="hero-btn light" onclick="navTo('contact')">Contact</button>
     </div>
-    <div class="hero-quote"><p>"Great medicine begins with great communication — understanding patients, translating complexity, and building trust."</p></div>
   </div>
 </div>
 
-<!-- ABOUT -->
+<!-- ── ABOUT: Bento Grid ── -->
 <div id="about">
   <div class="section-wrap">
-    <div class="sec-header reveal"><div><div class="sec-eyebrow">About</div><h2 class="sec-h">Profile &amp;<br><em>Competencies</em></h2></div><div class="sec-count">01</div></div>
-    <div class="about-grid reveal">
-      <div class="about-card">
-        <div class="ac-initials">SP</div>
-        <div class="ac-row"><div class="ac-label">University</div><div class="ac-val">Queen's University · Kingston, ON</div></div>
-        <div class="ac-row"><div class="ac-label">Degree</div><div class="ac-val">Honours BSc · Biology · Life Sciences</div></div>
-        <div class="ac-row"><div class="ac-label">Certificate</div><div class="ac-val">Smith School of Business · 2026–2027</div></div>
-        <div class="ac-divider"></div>
-        <div class="ac-row"><div class="ac-label">Graduation</div><div class="ac-val">May 2027</div></div>
-        <div class="ac-row"><div class="ac-label">Goal</div><div class="ac-val">Medical School · MD</div></div>
+    <div class="bento-eyebrow reveal">01 — About</div>
+    <div class="bento-h reveal">Profile &amp; Competencies</div>
+    <div class="bento-grid reveal">
+      <div class="bento-card b1">
+        <div class="bento-label">Summary</div>
+        <h3>Patient-support &amp; compliance-focused student leader</h3>
+        <p>Experience in clinical scribing, patient workflow, cross-functional process improvement, and data-backed program communications. Strong documentation, KPI tracking, and stakeholder coordination skills with deep interest in research compliance and medical affairs.</p>
       </div>
-      <div>
-        <div class="about-text">
-          <p>I am a life sciences student at Queen's University with a deep commitment to <strong>medicine, patient care, and health systems</strong>. My path has taken me from nephrology clinics in Annapolis to student government digital strategy to co-founding a campus wellness startup.</p>
-          <p>I have developed practical clinical skills through a nephrology observership — scribing real-time encounters, managing EMR documentation, and maintaining HIPAA compliance. Simultaneously, I translate complex health topics into accessible public-facing content through roles in student government and iGEM outreach.</p>
-          <p>Currently completing a Certificate in Business at Smith School, I aim to bring systems thinking and leadership to a career in medicine.</p>
+      <div class="bento-card b2">
+        <div class="bento-label">University</div>
+        <div class="bento-big">QU</div>
+        <div class="bento-val" style="margin-top:0.5rem;">Queen's University<br>Kingston, Ontario</div>
+      </div>
+      <div class="bento-card b3">
+        <div class="bento-label">Graduation</div>
+        <div class="bento-big" style="color:#000;">2027</div>
+        <div class="bento-val" style="color:#666;margin-top:0.5rem;">Expected May</div>
+      </div>
+      <div class="bento-card b4">
+        <div class="bento-label">Degree</div>
+        <div class="bento-val" style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;">Honours BSc Biology<br>Minor Life Sciences</div>
+      </div>
+      <div class="bento-card b5">
+        <div class="bento-label">Co-Founded</div>
+        <h3>Oppfy Inc.</h3>
+        <p>Campus wellness startup · Team of 5 · Health promotion programming for post-secondary students</p>
+      </div>
+      <div class="bento-card b6">
+        <div class="bento-label">Certs</div>
+        <div class="bento-big">5</div>
+      </div>
+      <div class="bento-card b7">
+        <div class="bento-label">Core Skills</div>
+        <div class="bento-tags">
+          <span class="bento-tag" style="color:#000;">Clinical Documentation</span>
+          <span class="bento-tag" style="color:#000;">EMR · HIPAA</span>
+          <span class="bento-tag" style="color:#000;">Medical Terminology</span>
+          <span class="bento-tag" style="color:#000;">KPI Tracking</span>
+          <span class="bento-tag" style="color:#000;">Stakeholder Engagement</span>
+          <span class="bento-tag" style="color:#000;">Research Compliance</span>
         </div>
-        <div class="competencies">
-          <div class="comp-title">Core Competencies</div>
-          <div class="comp-grid">
-            <div class="comp-item">Clinical Documentation</div>
-            <div class="comp-item">Patient Communication</div>
-            <div class="comp-item">EMR &amp; HIPAA</div>
-            <div class="comp-item">Health Promotion</div>
-            <div class="comp-item">Science Communication</div>
-            <div class="comp-item">Research &amp; Outreach</div>
-            <div class="comp-item">Program Evaluation</div>
-            <div class="comp-item">Digital Strategy</div>
-          </div>
-        </div>
+      </div>
+      <div class="bento-card b8">
+        <div class="bento-label">Certificate</div>
+        <div class="bento-val" style="font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;">Smith School of Business<br>Queen's University</div>
+        <div class="bento-label" style="margin-top:1rem;">Phone</div>
+        <div class="bento-val">249-779-2222</div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- EXPERIENCE -->
+<!-- ── EXPERIENCE: Brutalism ── -->
 <div id="experience">
   <div class="section-wrap">
-    <div class="sec-header reveal"><div><div class="sec-eyebrow">Experience</div><h2 class="sec-h">Professional<br><em>History</em></h2></div><div class="sec-count">02</div></div>
+    <div class="brut-header reveal">
+      <div class="brut-eyebrow">02 — Professional History</div>
+      <h2 class="brut-h">WORK<br>EXPERIENCE</h2>
+    </div>
+
     <div class="exp-list">
-      <div class="exp-item"><div class="exp-meta"><div class="exp-period">2025</div><div class="exp-location">Kingston, ON</div><div class="exp-type">Communications</div></div><div><div class="exp-role-name">Digital Communications Supervisor</div><div class="exp-org-name">Alma Mater Society · Queen's University</div><div class="exp-description">Owned AMS digital strategy across web, email, and social. Planned multi-channel campaigns for events and elections. Used platform analytics to optimize content cadence and effectiveness.</div><div class="exp-pills"><span class="exp-pill">Strategy</span><span class="exp-pill">Content</span><span class="exp-pill">Analytics</span></div></div></div>
-      <div class="exp-item"><div class="exp-meta"><div class="exp-period">2025</div><div class="exp-location">Kingston, ON</div><div class="exp-type">Research</div></div><div><div class="exp-role-name">Human Practices &amp; Outreach Member</div><div class="exp-org-name">QGEM · iGEM Synthetic Biology</div><div class="exp-description">Built education resources for synthetic biology learners including a Wet Lab Handbook. Delivered STEM outreach through school-facing activities. Supported CF-focused project communication and stakeholder engagement.</div><div class="exp-pills"><span class="exp-pill">STEM Outreach</span><span class="exp-pill">Science Comm</span><span class="exp-pill">iGEM</span></div></div></div>
-      <div class="exp-item"><div class="exp-meta"><div class="exp-period">2023–2025</div><div class="exp-location">Kingston, ON</div><div class="exp-type">Founding</div></div><div><div class="exp-role-name">Campus Medical Affairs Lead &amp; Co-founder</div><div class="exp-org-name">Oppfy</div><div class="exp-description">Led student health promotion translating wellness trends into evidence-informed programming. Built evaluation tools to monitor emerging needs. Designed accessible, balanced health initiatives with professional and student staff.</div><div class="exp-pills"><span class="exp-pill">Founding</span><span class="exp-pill">Health Promotion</span><span class="exp-pill">Leadership</span></div></div></div>
-      <div class="exp-item"><div class="exp-meta"><div class="exp-period">Summer 2024</div><div class="exp-location">Annapolis, MD</div><div class="exp-type">Clinical</div></div><div><div class="exp-role-name">Nephrology Observership &amp; Scribe Intern</div><div class="exp-org-name">Washington Nephrology Associates</div><div class="exp-description">Supported clinic workflow by rooming patients and gathering key history. Scribed real-time encounters producing structured clinical notes (HPI, assessment/plan). Managed EMR tasks and maintained full HIPAA compliance.</div><div class="exp-pills"><span class="exp-pill">Clinical</span><span class="exp-pill">EMR</span><span class="exp-pill">HIPAA</span><span class="exp-pill">Nephrology</span></div></div></div>
-      <div class="exp-item"><div class="exp-meta"><div class="exp-period">Summer 2023</div><div class="exp-location">Mississauga, ON</div><div class="exp-type">Compliance</div></div><div><div class="exp-role-name">Operational Compliance Intern</div><div class="exp-org-name">ibentos</div><div class="exp-description">Maintained audit-ready compliance documentation including SOPs and change logs. Coordinated cross-functional reviews. Built Excel dashboards to monitor findings and deliver prioritized risk-reduction recommendations.</div><div class="exp-pills"><span class="exp-pill">Compliance</span><span class="exp-pill">Documentation</span><span class="exp-pill">Risk</span></div></div></div>
+      <div class="brut-item reveal">
+        <div class="brut-left"><div class="brut-period">Jul–Dec 2025</div><div class="brut-loc">Kingston, ON</div><div class="brut-badge">Comms</div></div>
+        <div class="brut-body">
+          <div class="brut-role">Digital Communications Supervisor</div>
+          <div class="brut-org">Alma Mater Society (AMS) · Queen's University</div>
+          <div class="brut-desc">Owned AMS digital strategy across web, email, and social. Planned multi-channel campaigns for events and elections. Used platform analytics to refine content decisions and improve campaign effectiveness.</div>
+          <div class="brut-pills"><span class="brut-pill">Digital Strategy</span><span class="brut-pill">Content</span><span class="brut-pill">Analytics</span></div>
+        </div>
+        <div class="brut-num">01</div>
+      </div>
+
+      <div class="brut-item reveal">
+        <div class="brut-left"><div class="brut-period">Mar–Oct 2025</div><div class="brut-loc">Kingston, ON</div><div class="brut-badge">Research</div></div>
+        <div class="brut-body">
+          <div class="brut-role">Integrated Human Practices &amp; Outreach Member</div>
+          <div class="brut-org">Queen's iGEM (QGEM) · Synthetic Biology</div>
+          <div class="brut-desc">Built education resources including a Wet Lab Handbook. Delivered STEM outreach through school activities. Drove stakeholder engagement with pharma-oriented contacts and coordinated podcast/video deliverables.</div>
+          <div class="brut-pills"><span class="brut-pill">STEM Outreach</span><span class="brut-pill">Science Comm</span><span class="brut-pill">iGEM</span></div>
+        </div>
+        <div class="brut-num">02</div>
+      </div>
+
+      <div class="brut-item reveal">
+        <div class="brut-left"><div class="brut-period">Sep 2023–Apr 2025</div><div class="brut-loc">Kingston, ON</div><div class="brut-badge">Founder</div></div>
+        <div class="brut-body">
+          <div class="brut-role">Co-founder &amp; Medical Affairs Lead</div>
+          <div class="brut-org">Oppfy Inc.</div>
+          <div class="brut-desc">Led team of 5 at startup social media app developing health promotion initiatives for post-secondary students. Designed evaluation tools and donor-funded programming monitoring wellness trends with professional staff.</div>
+          <div class="brut-pills"><span class="brut-pill">Founding</span><span class="brut-pill">Medical Affairs</span><span class="brut-pill">Health Promo</span></div>
+        </div>
+        <div class="brut-num">03</div>
+      </div>
+
+      <div class="brut-item reveal">
+        <div class="brut-left"><div class="brut-period">May–Aug 2024</div><div class="brut-loc">Annapolis, MD</div><div class="brut-badge">Clinical</div></div>
+        <div class="brut-body">
+          <div class="brut-role">Patient Support &amp; Scribe Intern</div>
+          <div class="brut-org">Washington Nephrology Association</div>
+          <div class="brut-desc">Roomed patients and scribed real-time encounters producing structured clinical notes (HPI, assessment/plan, orders). Managed EMR tasks and maintained strict HIPAA compliance throughout.</div>
+          <div class="brut-pills"><span class="brut-pill">Clinical</span><span class="brut-pill">EMR</span><span class="brut-pill">HIPAA</span><span class="brut-pill">Nephrology</span></div>
+        </div>
+        <div class="brut-num">04</div>
+      </div>
+
+      <div class="brut-item reveal">
+        <div class="brut-left"><div class="brut-period">May–Aug 2023</div><div class="brut-loc">Toronto, ON</div><div class="brut-badge">Compliance</div></div>
+        <div class="brut-body">
+          <div class="brut-role">Operational Compliance Intern</div>
+          <div class="brut-org">ibentos Canada</div>
+          <div class="brut-desc">Maintained audit-ready compliance documentation (SOPs, change logs, evidence trackers). Coordinated cross-functional reviews. Built Excel dashboards to deliver prioritized risk-reduction recommendations.</div>
+          <div class="brut-pills"><span class="brut-pill">Compliance</span><span class="brut-pill">Documentation</span><span class="brut-pill">Risk</span></div>
+        </div>
+        <div class="brut-num">05</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- EDUCATION -->
+<!-- ── LEADERSHIP: Card-Based ── -->
+<div id="leadership">
+  <div class="section-wrap">
+    <div class="card-eyebrow reveal">03 — Leadership &amp; Volunteer</div>
+    <h2 class="card-h reveal">Campus<br><em>Involvement</em></h2>
+    <div class="cards-grid reveal">
+      <div class="lcard">
+        <div class="lcard-icon">🏛️</div>
+        <div class="lcard-period">May 2025 – Present</div>
+        <div class="lcard-role">Co-President</div>
+        <div class="lcard-org">Queen's Pre-Medical Society (QPMS)</div>
+        <div class="lcard-desc">Led recruitment, hiring, and onboarding for the executive team. Directed planning and delivery of academic, mentorship, and networking events to increase student access to pre-med resources.</div>
+        <div class="lcard-pills"><span class="lcard-pill">Leadership</span><span class="lcard-pill">Pre-Med</span><span class="lcard-pill">Events</span></div>
+      </div>
+      <div class="lcard">
+        <div class="lcard-icon">💊</div>
+        <div class="lcard-period">2024 – 2025</div>
+        <div class="lcard-role">Events &amp; Outreach Executive</div>
+        <div class="lcard-org">Queen's Pharmaceutical Society (QPS)</div>
+        <div class="lcard-desc">Led planning and execution of society programming with smooth logistics and strong member engagement. Ran executive planning meetings keeping teams aligned on timelines and communication.</div>
+        <div class="lcard-pills"><span class="lcard-pill">Events</span><span class="lcard-pill">Outreach</span><span class="lcard-pill">Pharma</span></div>
+      </div>
+      <div class="lcard">
+        <div class="lcard-icon">⚖️</div>
+        <div class="lcard-period">2023 – 2024</div>
+        <div class="lcard-role">Chief Returning Officer</div>
+        <div class="lcard-org">Residence Society of Queen's (ResSoc)</div>
+        <div class="lcard-desc">Oversaw full election cycle — nominations, campaigning, polling, results — ensuring fairness, transparency, and bylaw compliance. Supervised Elections Team and resolved disputes.</div>
+        <div class="lcard-pills"><span class="lcard-pill">Governance</span><span class="lcard-pill">Elections</span><span class="lcard-pill">Compliance</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CERTIFICATES: Art Deco ── -->
+<div id="certificates">
+  <div class="section-wrap">
+    <div class="deco-header reveal">
+      <div class="deco-rule"><div class="deco-diamond"></div></div>
+      <div class="deco-eyebrow">04 — Credentials</div>
+      <h2 class="deco-h">Career<br><em>Certificates</em></h2>
+      <div class="deco-sub">Continuing Education · Professional Development</div>
+    </div>
+    <div class="deco-grid reveal">
+      <div class="deco-card">
+        <div class="deco-cert-name">AI Foundations for Healthcare Professionals</div>
+        <div class="deco-cert-org">Walden University · AIHP 1100</div>
+        <div class="deco-cert-date">Feb 2026 – Present</div>
+      </div>
+      <div class="deco-card">
+        <div class="deco-cert-name">Regulatory Compliance Specialization</div>
+        <div class="deco-cert-org">University of Pennsylvania</div>
+        <div class="deco-cert-date">Oct 2025 – Present</div>
+      </div>
+      <div class="deco-card">
+        <div class="deco-cert-name">Palliative Care Always Specialization</div>
+        <div class="deco-cert-org">Stanford University</div>
+        <div class="deco-cert-date">Aug 2024 – Oct 2024</div>
+      </div>
+      <div class="deco-card">
+        <div class="deco-cert-name">Ethical Conduct for Research Involving Humans</div>
+        <div class="deco-cert-org">Government of Canada · TCPS 2: CORE 2022</div>
+        <div class="deco-cert-date">Recertified 2024</div>
+      </div>
+      <div class="deco-card">
+        <div class="deco-cert-name">Workplace Hazardous Materials Information System</div>
+        <div class="deco-cert-org">Dept. of Environment · WHMIS 2015</div>
+        <div class="deco-cert-date">Recertified 2024</div>
+      </div>
+      <div class="deco-card" style="display:flex;align-items:center;justify-content:center;">
+        <div style="text-align:center;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:48px;color:rgba(201,168,76,0.15);font-weight:300;">5</div>
+          <div style="font-family:'Space Mono',monospace;font-size:8px;letter-spacing:3px;color:rgba(201,168,76,0.3);text-transform:uppercase;">Certificates</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SKILLS: Material Design ── -->
+<div id="skills">
+  <div class="section-wrap">
+    <div class="mat-eyebrow reveal">05 — Technical Expertise</div>
+    <h2 class="mat-h reveal">Skills &amp; Tools</h2>
+    <div class="mat-grid reveal">
+      <div class="mat-card">
+        <div class="mat-card-header">
+          <div class="mat-icon"><svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg></div>
+          <div class="mat-card-title">Medical Affairs &amp; Scientific Comm</div>
+        </div>
+        <div class="mat-tags">
+          <span class="mat-chip">Medical Terminology</span><span class="mat-chip">Clinical Writing</span><span class="mat-chip">Literature Review</span><span class="mat-chip">Journal Club</span><span class="mat-chip">Publication Support</span><span class="mat-chip">Scientific Exchange</span>
+        </div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-card-header">
+          <div class="mat-icon" style="background:#388e3c;"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zM9 9h6v6H9z"/></svg></div>
+          <div class="mat-card-title">Clinical Data &amp; Documentation</div>
+        </div>
+        <div class="mat-tags">
+          <span class="mat-chip green">EMR Documentation</span><span class="mat-chip green">Chart Review</span><span class="mat-chip green">HIPAA</span><span class="mat-chip green">SOPs</span><span class="mat-chip green">Evidence Trackers</span><span class="mat-chip green">Regulatory Docs</span>
+        </div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-card-header">
+          <div class="mat-icon" style="background:#7b1fa2;"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 7a4 4 0 100 8 4 4 0 000-8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
+          <div class="mat-card-title">Stakeholder &amp; KOL Engagement</div>
+        </div>
+        <div class="mat-tags">
+          <span class="mat-chip purple">HCP Communication</span><span class="mat-chip purple">Stakeholder Mapping</span><span class="mat-chip purple">Patient Engagement</span><span class="mat-chip purple">Cross-functional</span>
+        </div>
+      </div>
+      <div class="mat-card">
+        <div class="mat-card-header">
+          <div class="mat-icon" style="background:#e65100;"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></div>
+          <div class="mat-card-title">Tools &amp; Platforms</div>
+        </div>
+        <div class="mat-tags">
+          <span class="mat-chip orange">Epic</span><span class="mat-chip orange">Cerner</span><span class="mat-chip orange">REDCap</span><span class="mat-chip orange">Veeva Vault</span><span class="mat-chip orange">Salesforce Health</span><span class="mat-chip orange">PubMed</span><span class="mat-chip orange">SPSS</span><span class="mat-chip orange">GraphPad Prism</span><span class="mat-chip orange">Benchling</span><span class="mat-chip orange">Qualtrics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── EDUCATION: Luxury / Refined ── -->
 <div id="education">
   <div class="section-wrap">
-    <div class="sec-header reveal"><div><div class="sec-eyebrow">Education</div><h2 class="sec-h">Academic<br><em>Credentials</em></h2></div><div class="sec-count">03</div></div>
-    <div class="edu-list reveal">
-      <div class="edu-item" onclick="openModal('queens')">
-        <div class="edu-col"><div class="edu-col-label">Degree</div><div class="edu-col-val"><em>Honours Bachelor of Science</em></div><div class="edu-badge">In Progress</div></div>
-        <div class="edu-col"><div class="edu-col-label">Institution</div><div class="edu-col-val">Queen's University<br><span style="font-size:11px;color:var(--muted);">Kingston, Ontario</span></div></div>
-        <div class="edu-col"><div class="edu-col-label">Program · Duration</div><div class="edu-col-val">Biology · Life Sciences<br><span style="font-size:11px;color:var(--muted);">2022 – 2027</span></div></div>
+    <div class="lux-eyebrow reveal">06 — Academic Credentials</div>
+    <h2 class="lux-h reveal">Education &amp;<br><em>Coursework</em></h2>
+    <div class="lux-list reveal">
+      <div class="lux-item" onclick="openModal('queens')">
+        <div class="lux-col"><div class="lux-col-label">Degree</div><div class="lux-col-val">Honours Bachelor of Science</div><div class="lux-badge">In Progress</div></div>
+        <div class="lux-col"><div class="lux-col-label">Institution</div><div class="lux-col-val">Queen's University · Kingston, ON</div></div>
+        <div class="lux-col"><div class="lux-col-label">Program</div><div class="lux-col-val">Biology · Minor Life Sciences · Expected May 2027</div></div>
       </div>
-      <div class="edu-item" onclick="openModal('smith')">
-        <div class="edu-col"><div class="edu-col-label">Credential</div><div class="edu-col-val"><em>Certificate in Business</em></div><div class="edu-badge">Upcoming</div></div>
-        <div class="edu-col"><div class="edu-col-label">Institution</div><div class="edu-col-val">Smith School of Business<br><span style="font-size:11px;color:var(--muted);">Queen's University</span></div></div>
-        <div class="edu-col"><div class="edu-col-label">Duration</div><div class="edu-col-val">April 2026 – May 2027</div></div>
+      <div class="lux-item" onclick="openModal('smith')">
+        <div class="lux-col"><div class="lux-col-label">Credential</div><div class="lux-col-val">Certificate in Business</div><div class="lux-badge">Upcoming</div></div>
+        <div class="lux-col"><div class="lux-col-label">Institution</div><div class="lux-col-val">Smith School of Business · Queen's</div></div>
+        <div class="lux-col"><div class="lux-col-label">Duration</div><div class="lux-col-val">Kingston, Ontario</div></div>
       </div>
-      <div class="edu-item" onclick="openModal('bensalem')">
-        <div class="edu-col"><div class="edu-col-label">Credential</div><div class="edu-col-val"><em>High School Diploma</em></div><div class="edu-badge">Completed</div></div>
-        <div class="edu-col"><div class="edu-col-label">Institution</div><div class="edu-col-val">Bensalem High School<br><span style="font-size:11px;color:var(--muted);">Bensalem, Pennsylvania</span></div></div>
-        <div class="edu-col"><div class="edu-col-label">Duration</div><div class="edu-col-val">2018 – 2022</div></div>
+    </div>
+    <div class="lux-courses reveal">
+      <div class="lux-courses-title">Relevant Coursework</div>
+      <div class="lux-courses-grid">
+        <span class="lux-course">Pharmacology 100 (A)</span>
+        <span class="lux-course">Biology 102 (A)</span>
+        <span class="lux-course">Health 101 (A−)</span>
+        <span class="lux-course">Health Science 270 (A−)</span>
+        <span class="lux-course">Chemistry 112 (A)</span>
+        <span class="lux-course">Biochemistry 218 (A−)</span>
+        <span class="lux-course">Clinical Biochemistry 381 (A)</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- CONTACT -->
+<!-- ── CONTACT: Glassmorphism ── -->
 <div id="contact">
   <div class="section-wrap">
-    <div class="sec-header reveal"><div><div class="sec-eyebrow">Contact</div><h2 class="sec-h">Get In<br><em>Touch</em></h2></div><div class="sec-count">04</div></div>
-    <div class="contact-layout reveal">
-      <div class="contact-left">
-        <p class="contact-intro">I'm open to conversations about medicine, research, clinical shadowing, and meaningful collaboration. Whether you're a fellow student, researcher, or healthcare professional — reach out.</p>
-        <a class="contact-item" href="https://www.linkedin.com/in/shiv-parekh1" target="_blank">
-          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-          <div><div class="ci-label">LinkedIn</div><div class="ci-val">linkedin.com/in/shiv-parekh1</div></div>
-          <span class="ci-arrow">→</span>
+    <div class="glass-eyebrow reveal">07 — Get In Touch</div>
+    <h2 class="glass-h reveal">Let's<br><em>Connect</em></h2>
+    <div class="glass-layout reveal">
+      <div class="glass-card">
+        <p class="glass-intro">I'm open to conversations about medical affairs, research opportunities, patient support programs, clinical shadowing, and meaningful collaboration. Reach out — I'd love to connect.</p>
+        <a class="glass-link" href="https://www.linkedin.com/in/Shiv-Parekh1" target="_blank">
+          <div class="glass-link-icon"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div><div class="glass-link-label">LinkedIn</div><div class="glass-link-val">linkedin.com/Shiv-Parekh1</div></div>
+          <span class="glass-arrow">→</span>
         </a>
-        <a class="contact-item" href="mailto:shiv.parekh@queensu.ca">
-          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-          <div><div class="ci-label">Email</div><div class="ci-val">shiv.parekh@queensu.ca</div></div>
-          <span class="ci-arrow">→</span>
+        <a class="glass-link" href="mailto:22shp3@queensu.ca">
+          <div class="glass-link-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+          <div><div class="glass-link-label">Email</div><div class="glass-link-val">22shp3@queensu.ca</div></div>
+          <span class="glass-arrow">→</span>
         </a>
-        <div class="contact-item" onclick="openResume()" style="cursor:pointer;">
-          <div class="ci-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-          <div><div class="ci-label">Resume</div><div class="ci-val">Download CV / PDF</div></div>
-          <span class="ci-arrow">→</span>
+        <a class="glass-link" href="tel:2497792222">
+          <div class="glass-link-icon"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div>
+          <div><div class="glass-link-label">Phone</div><div class="glass-link-val">249-779-2222</div></div>
+          <span class="glass-arrow">→</span>
+        </a>
+        <div class="glass-link" onclick="openResume()">
+          <div class="glass-link-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
+          <div><div class="glass-link-label">Resume</div><div class="glass-link-val">Download CV / PDF</div></div>
+          <span class="glass-arrow">→</span>
         </div>
       </div>
-      <div class="contact-divider"></div>
-      <div class="contact-right">
-        <div class="form-wrap" id="form-wrap">
-          <div class="fg"><label>Full Name</label><input type="text" id="f-name" placeholder="Dr. Jane Smith"></div>
-          <div class="fg"><label>Email Address</label><input type="email" id="f-email" placeholder="jane@hospital.com"></div>
-          <div class="fg"><label>Subject</label><input type="text" id="f-subj" placeholder="Research / Shadowing / Other"></div>
-          <div class="fg"><label>Message</label><textarea id="f-msg" placeholder="I'd like to connect about..."></textarea></div>
-          <button class="btn-send" onclick="submitForm()">Send Message<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></button>
+      <div class="glass-card">
+        <div class="glass-form" id="glass-form">
+          <div class="glass-fg"><label>Full Name</label><input type="text" id="f-name" placeholder="Dr. Jane Smith"></div>
+          <div class="glass-fg"><label>Email Address</label><input type="email" id="f-email" placeholder="jane@hospital.com"></div>
+          <div class="glass-fg"><label>Subject</label><input type="text" id="f-subj" placeholder="Research / Shadowing / Medical Affairs"></div>
+          <div class="glass-fg"><label>Message</label><textarea id="f-msg" placeholder="I'd like to connect about..."></textarea></div>
+          <button class="glass-btn" onclick="submitForm()">Send Message<svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></button>
         </div>
-        <div class="form-ok" id="form-ok"><div class="ok-icon">✓</div><p>Your message has been received. Shiv will respond shortly.</p></div>
+        <div class="form-ok-glass" id="form-ok">
+          <div class="ok-icon-glass">✓</div>
+          <p>Your message has been received. Shiv will respond shortly.</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- FOOTER -->
+<!-- ── FOOTER: Dark Academia ── -->
 <footer>
-  <div class="footer-logo">
-    <div class="f-cross"><div class="fh"></div><div class="fv"></div><div class="fc tl"></div><div class="fc tr"></div><div class="fc bl"></div><div class="fc br"></div></div>
-    <div class="f-name">Shiv Parekh</div>
-  </div>
-  <div class="f-copy">© 2026 · Kingston, Ontario · Queen's University</div>
-  <div class="f-links">
-    <a href="https://www.linkedin.com/in/shiv-parekh1" target="_blank">LinkedIn</a>
-    <a href="mailto:shiv.parekh@queensu.ca">Email</a>
-    <a onclick="openResume()" style="cursor:pointer;">Resume</a>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <div class="da-mark"></div>
+      <div class="da-name">Shiv Parekh</div>
+    </div>
+    <div class="footer-center">
+      <div class="footer-quote">"Scientia est potentia"</div>
+      <div class="footer-copy">© 2026 · Queen's University · Kingston, Ontario</div>
+    </div>
+    <div class="footer-links">
+      <a href="https://www.linkedin.com/in/Shiv-Parekh1" target="_blank">LinkedIn</a>
+      <a href="mailto:22shp3@queensu.ca">Email</a>
+      <a onclick="openResume()">Resume</a>
+    </div>
   </div>
 </footer>
 
@@ -494,35 +866,32 @@ footer{background:var(--navy);padding:2rem 3rem;display:flex;justify-content:spa
 
 <script>
 const mods={
-  queens:{title:"Queen's University",body:"Honours BSc in Biology with a Life Sciences major. Graduating May 2027. Active in research, outreach, and campus leadership throughout the program.",link:"https://www.queensu.ca",lt:"Visit Queen's University →"},
-  smith:{title:"Smith School of Business",body:"Certificate in Business from one of Canada's leading business schools. Focused on management, strategy, and leadership to complement a clinical career.",link:"https://smith.queensu.ca",lt:"Visit Smith School →"},
-  bensalem:{title:"Bensalem High School",body:"High School Diploma, Bensalem, Pennsylvania. Graduated June 2022 before beginning undergraduate studies at Queen's University.",link:"https://www.bensalemsd.org",lt:"Visit Bensalem SD →"}
+  queens:{title:"Queen's University",body:"Honours BSc in Biology with a Minor in Life Sciences. Expected May 2027. Coursework includes Pharmacology, Biochemistry, Clinical Biochemistry, and Health Sciences.",link:"https://www.queensu.ca",lt:"Visit Queen's University →"},
+  smith:{title:"Smith School of Business",body:"Certificate in Business from one of Canada's leading business schools. Focused on management, strategy, and leadership to complement a clinical career.",link:"https://smith.queensu.ca",lt:"Visit Smith School →"}
 };
 function openModal(k){const m=mods[k];document.getElementById('m-title').textContent=m.title;document.getElementById('m-body').textContent=m.body;const l=document.getElementById('m-link');l.href=m.link;l.textContent=m.lt;document.getElementById('modal-bg').classList.add('open');}
 function closeMod(e){if(e.target===document.getElementById('modal-bg'))closeModDirect();}
 function closeModDirect(){document.getElementById('modal-bg').classList.remove('open');}
-function openResume(){alert("Link Shiv's resume PDF here to enable download.");}
+function openResume(){alert("Place CVmed.pdf in same folder as this file, then replace this alert with: window.open('CVmed.pdf')");}
 function navTo(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
 function mNavTo(id){toggleMenu();setTimeout(()=>navTo(id),300);}
-function toggleMenu(){
-  document.getElementById('hamburger').classList.toggle('open');
-  document.getElementById('mobile-menu').classList.toggle('open');
-}
+function toggleMenu(){document.getElementById('hamburger').classList.toggle('open');document.getElementById('mobile-menu').classList.toggle('open');}
 function submitForm(){
   const n=document.getElementById('f-name').value.trim();
   const e=document.getElementById('f-email').value.trim();
   const m=document.getElementById('f-msg').value.trim();
   if(!n||!e||!m){alert('Please fill in all required fields.');return;}
-  document.getElementById('form-wrap').style.display='none';
+  document.getElementById('glass-form').style.display='none';
   document.getElementById('form-ok').style.display='block';
 }
 window.addEventListener('scroll',()=>{
-  document.querySelectorAll('.reveal').forEach((el,i)=>{if(el.getBoundingClientRect().top<window.innerHeight*0.88)setTimeout(()=>el.classList.add('vis'),i%4*80);});
-  document.querySelectorAll('.exp-item').forEach((el,i)=>{if(el.getBoundingClientRect().top<window.innerHeight*0.88)setTimeout(()=>el.classList.add('vis'),i*100);});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{
+    if(el.getBoundingClientRect().top<window.innerHeight*0.9)setTimeout(()=>el.classList.add('vis'),i%5*60);
+  });
 });
 setTimeout(()=>window.dispatchEvent(new Event('scroll')),200);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModDirect();});
-setTimeout(()=>document.getElementById('preloader').classList.add('done'),2000);
+setTimeout(()=>document.getElementById('preloader').classList.add('done'),2200);
 </script>
 </body>
 </html>
